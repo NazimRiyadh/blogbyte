@@ -1,1 +1,4 @@
-# blogbyte git init git add README.md git commit -m first commit git branch -M main git remote add origin https://github.com/NazimRiyadh/blogbyte.git git push -u origin main
+# 📰 Blogbyte
+
+**Blogbyte** is a modern, minimalistic blogging platform designed to make content creation fast, beautiful, and effortless.  
+It focuses on simplicity, speed, and clean design — whether you're writing personal stories or tech articles.
