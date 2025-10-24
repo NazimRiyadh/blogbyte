@@ -1,18 +1,38 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react';
 import appwriteService from "../appwrite/config";
-import {Container, PostCard} from '../components'
+import { Container, PostCard } from '../components';
 
 export default function Home() {
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        appwriteService.getPosts().then((posts) => {
-            if (posts) {
-                setPosts(posts.documents)
+        const fetchPosts = async () => {
+            try {
+                const res = await appwriteService.getPosts();
+                // safely access res.documents or default to empty array
+                setPosts(res?.documents || []);
+            } catch (err) {
+                console.error("Error fetching posts:", err);
+                setPosts([]);
+            } finally {
+                setLoading(false);
             }
-        })
-    }, [])
-  
+        };
+
+        fetchPosts();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="w-full py-8 mt-4 text-center">
+                <Container>
+                    <p>Loading posts...</p>
+                </Container>
+            </div>
+        );
+    }
+
     if (posts.length === 0) {
         return (
             <div className="w-full py-8 mt-4 text-center">
@@ -26,8 +46,9 @@ export default function Home() {
                     </div>
                 </Container>
             </div>
-        )
+        );
     }
+
     return (
         <div className='w-full py-8'>
             <Container>
@@ -40,6 +61,5 @@ export default function Home() {
                 </div>
             </Container>
         </div>
-    )
+    );
 }
-
