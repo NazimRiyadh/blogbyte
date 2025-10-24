@@ -5,7 +5,8 @@ import authService from "../appwrite/auth";
 import { login } from "../store/authSlice";
 import { Button, Input, Logo } from "./index.js";
 import {useDispatch} from 'react-redux'
-import {useForm} from 'react-hook-form'
+import { useForm } from "react-hook-form";
+
 
 
 function Signup() {
