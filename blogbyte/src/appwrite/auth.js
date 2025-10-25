@@ -13,27 +13,27 @@ export class AuthService {
     }
 
     async createAccount({ email, password, name }) {
-    try {
-        const userAccount = await this.account.create({
-            userId: ID.unique(),
-            email,
-            password,
-            name
-    });
+        try {
+            const userAccount = await this.account.create(
+                ID.unique(),
+                email,
+                password,
+                name
+            );
 
-        if (userAccount) {
-            return this.login({ email, password });
-        } else {
-            return userAccount;
+            if (userAccount) {
+                return this.login({ email, password });
+            } else {
+                return userAccount;
+            }
+        } catch (error) {
+            throw error;
         }
-    } catch (error) {
-        throw error;
     }
-}
     
     async login({ email, password }) {
         try {
-            const session = await this.account.createSession(email, password);
+            const session = await this.account.createEmailPasswordSession(email, password);
             return session;
         } catch (error) {
             throw error;
@@ -42,11 +42,9 @@ export class AuthService {
 
     async getCurrentUser() {
         try {
-           
             const user = await this.account.get();
             return user;
         } catch (error) {
-           
             if (error.code === 401) {
                 console.warn("No active session. User not logged in.");
             } else {

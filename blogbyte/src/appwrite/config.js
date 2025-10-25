@@ -21,7 +21,7 @@ export class Service {
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 slug,
-                { title, content, featuredImage, status, userId }
+                { title, slug, content, featuredImage, status, userId }
             );
         } catch (error) {
             console.error("Error creating post:", error);
@@ -106,13 +106,11 @@ export class Service {
     }
 
     getFilePreview(fileId) {
-        try {
-            return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
-        } catch (error) {
-            console.error("Error getting file preview:", error);
-            return null;
-        }
-    }
+    return this.bucket.getFilePreview(
+        conf.appwriteBucketId,
+        fileId
+    );
+} 
 }
 
 const service = new Service();
