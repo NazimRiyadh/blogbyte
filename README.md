@@ -214,7 +214,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ## 📧 Contact & Support
 
 - **Author**: [NazimRiyadh](https://github.com/NazimRiyadh)
-- **Email**: [your-email@example.com](mailto:your-email@example.com)
+  - **Email**: [your-email@example.com](nazimriyadh001@example.com)
 - **Issues**: [GitHub Issues](https://github.com/NazimRiyadh/blogbyte/issues)
 
 ---
